@@ -19,7 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('student.urls')),
-    path('attendance/', include('atendre.urls')),
+    path('accounts/', include('django.contrib.auth.urls')), # Includes login, logout, password reset URLs
+    path('', include('atendre.urls')),
 
 ]

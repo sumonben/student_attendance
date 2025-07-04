@@ -45,7 +45,7 @@
         <div class="col col-lg-12">
           <div class="card login-body shadow-lg rounded-10 py-5">
             <table width="100%" border="1" cellspacing="0" cellpadding="10">
-              <thead><th colspan="5" style="height: 40px; background-color: #035a4c; color: #fff;padding: 15px;font-size:50px;text-align:center;"> <div id="clock"></div></span>
+              <thead><th id="name" colspan="5" style="height: 40px; background-color: #035a4c; color: #fff;text-shadow: 5px 5px 5px rgb(65, 7, 7);padding: 15px;font-size:50px;text-align:center;"> Student Attendance</span>
 </th></thead>
               {% if notfound %}
               <thead style="height: 25px; background-color: #245b80; color: #fff;padding: 15px"><th colspan="5" style="height: 40px; background-color:rgb(168, 8, 8); color: #fff;padding: 20px;"> Student not found!! Re=Enter Right Information or Contact  control room</th></thead>
@@ -126,15 +126,14 @@
                               <div class="row">
                                   
                                  <div class="col-sm-4" >
-                                <table>
+                                 <caption> <h2 style="padding-left:10px;padding-right:10px;font-weight:bold;font-size:30px;background-color: #035a4c; color: #fff;text-shadow: 7px 7px 7px rgb(73, 25, 11);">Student Details</h2></caption>
+
+                                <table style="font-weight:bold;font-size:20px;">
                                   <thead>
-                                    <th>Name:</th>
-                                     <th id="name"></th>
+                                    <th>Roll:</th>
+                                     <th id="roll"></th>
                                   </thead>
-                                  <tr>
-                                    <td>Roll:</td>
-                                    <td id="roll"></td>
-                                  </tr>
+                                 
                                    <tr>
                                     <td>Group:</td>
                                     <td id="group"></td>
@@ -152,12 +151,12 @@
                                  <h1 id="indication"> </h1>
                                 </div>
                                 <div class="col-sm-4" >
-                                    <img id="image" src="{% static 'images/gmrwc_logo.png' %}" width="300">
+                                    <img id="image" src="{% static 'images/gmrwc_logo.png' %}" width="350">
 
                                   </div>
                                 <div class="col-sm-4" style="text-align:center" >
-                                   <caption>Todays Attendance Details</caption>
-                                  <table align="center">
+                                   <caption> <h2 style="padding-left:10px;padding-right:10px;font-weight:bold;font-size:30px;background-color: #035a4c; color: #fff;text-shadow: 7px 7px 7px rgb(73, 25, 11);">Todays Attendance Details</h2></caption>
+                                  <table align="center"  style="font-weight:bold;font-size:20px; text-align:center;border-color:red;">
                                    
                                   <thead>
                                     <th>Science:</th>
@@ -174,8 +173,22 @@
                                     <td id="all" ></td>
                                   </tr>
                                 </table>
+                                <table width="100%" border="0" cellspacing="0" cellpadding="10">
+                                  <thead>
+                                                                                    
+
+                                    <th colspan="5">
+                                      <button class="rounded-50 ml-1" style="padding-left:10px;padding-right:10px;font-weight:bold;font-size:50px;background-color: #035a4c; color: #fff;text-shadow: 7px 7px 7px rgb(73, 25, 11);"><div id="clock"></div></button>
+                                    </th>
+                                  </thead>
+                                  <tr>
+                                    <th colspan="5">
+                                      <button class="rounded-50 ml-1" style="padding-left:10px;padding-right:10px;font-weight:bold;font-size:30px;background-color: #035a4c; color: #fff;text-shadow: 7px 7px 7px rgb(73, 25, 11);">{% now "l, F j, Y" %}</button>
+                                    </th>
+                                  </tr>
+                                </table>
+
                                 </div>
-                                
                                  
                               </div>
                             </div>
@@ -235,7 +248,7 @@
               }
 
               setTimeout(() => {
-                              document.getElementById("indication").innerText="";
+                              document.getElementById("indication").innerText="Enter Another ID Card";
 
               }, 2000);
               document.getElementById(id).value="";

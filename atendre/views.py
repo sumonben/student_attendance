@@ -1,30 +1,38 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate, login
 from django.views.generic import View, TemplateView, DetailView
 from student.models import Student
 from .models import Attendance,DailyAttendance
 from django.http import JsonResponse
 from datetime import date 
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 class StudentAttendanceView(View):
     template_name = 'attendance/student_attendance.html'
     
     def get(self, request, *args, **kwargs):
         context={}
-        return render(request, self.template_name,context)
+        if request.user.is_authenticated:
+            return render(request, self.template_name,context)
+        else:
+            return render(request, 'registration/login.html') 
 
     def post(self, request, *args, **kwargs):
         context={}
     
-
-        return render(request, 'attendance/student_attendance.html',context)
+        if request.user.is_authenticated :
+            return render(request, self.template_name,context)
+        else:
+            return render(request, 'registration/login.html')
 
 class GetStudentView(View):
     template_name = 'attendance/student_attendance.html'
     
+    
     def get(self, request, *args, **kwargs):
         context={}
         return render(request, self.template_name,context)
-
+    
     def post(self, request, *args, **kwargs):
         context={}
         if request.POST.get('id')=='id_roll' :
@@ -74,4 +82,16 @@ class GetStudentView(View):
            
         return JsonResponse({'status': 'success','meaasge':'Account created Successfully','student':student,'group':group,'session':session,'attendance1':attendance1,'done':done},safe=False)
 
-  
+def user_login(request):
+        if request.method == 'POST':
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('attendance') # Redirect to a success page
+            else:
+                # Handle invalid credentials
+                return render(request, 'registration/login.html', {'message': 'Invalid credentials'})
+        else:
+            return render(request, 'registration/login.html') 

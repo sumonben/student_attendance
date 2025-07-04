@@ -62,7 +62,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'attendance.urls'
-
+# settings.py
+LOGIN_REDIRECT_URL = '/attendance/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

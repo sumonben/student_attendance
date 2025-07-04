@@ -130,18 +130,25 @@
         <div class="top-header">
             <ul class="nav align-items-center justify-content-end" style="position: relative;">
                 {% if user.is_authenticated %}
-                <li class="nav-item"><a href="{% url 'admin:index' %}" class="nav-link"> Dashboard </a></li>
+                <li class="nav-item"><a href="{% url 'attendance' %}" class="nav-link"> Dashboard </a></li>
                 {% else %}
-                    <li class="nav-item"><a href="{% url 'admin:index' %}" class="nav-link"> Login </a></li>
+                    <li class="nav-item"><a href="{% url 'login' %}" class="nav-link"> Login </a></li>
                 {% endif %}
+
                 <li class="nav-item"><a href="" class="nav-link">Register</a></li>
-                <li class="nav-item"><a href="" class="nav-link">
-                        Comment
-                    </a></li>
-                <li class="nav-item"><a href="/digitalshop" class="nav-link"><b>Contact</b></a>
-                </li>
                 <li class="nav-item"><a href="{% url 'attendance' %}" class="nav-link"><b>Attendance</b></a>
                 </li>
+                <li class="nav-item"><a href="{% url 'admin:index' %}" class="nav-link"> Admin </a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Log Out</button>
+                    </form>             
+                </li>
+                    {% endif %}
+                
+                
             </ul>
         </div>
   <div class="main-header">
