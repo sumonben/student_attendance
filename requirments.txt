@@ -6,6 +6,7 @@ Django
 django-appconf
 django-ckeditor
 django-import-export
+django-admin-rangefilter
 django-js-asset
 django-select2
 django-smart-selects

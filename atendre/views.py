@@ -6,6 +6,7 @@ from .models import Attendance,DailyAttendance
 from django.http import JsonResponse
 from datetime import date 
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 class StudentAttendanceView(View):
     template_name = 'attendance/student_attendance.html'

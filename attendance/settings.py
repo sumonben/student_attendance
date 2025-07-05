@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'student',
     'atendre',
-    'django_select2',
     'import_export',
     'rangefilter',
 ]

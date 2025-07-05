@@ -39,13 +39,22 @@
 <div class="services">
   
   <div data-v-6f04a53f="" class="memberRegistration py-5" >
-    <div class="container-wrapper">
-                           <input type="text" name="roll" class="form-control form-control-sm" style="margin:auto;width:10%" required="" id="id_roll" oninput="myFunctionTeacher(this.id);"> 
+    <div class="container-wrapper" style="margin-top:-20px;">
+      <table>
+        <thead>
+          <th width="60%">
+             <h1 id="indication" style="display:inline-block;" > </h1>
+          </th>
+          <th width="40%">
+               <input type="text" name="roll" class="form-control form-control-sm" style="margin:auto;width:40%" required="" id="id_roll" oninput="myFunctionTeacher(this.id);" autofocus> 
+          </th>
+        </thead>
+      </table>
       <div class="row justify-content-md-center">
         <div class="col col-lg-12">
           <div class="card login-body shadow-lg rounded-10 py-5">
             <table width="100%" border="1" cellspacing="0" cellpadding="10">
-              <thead><th id="name" colspan="5" style="height: 40px; background-color: #035a4c; color: #fff;text-shadow: 5px 5px 5px rgb(65, 7, 7);padding: 15px;font-size:50px;text-align:center;"> Student Attendance</span>
+              <thead><th id="name" colspan="5" style="height: 40px; background-color: #035a4c; color: #fff;text-shadow: 5px 5px 5px rgb(65, 7, 7);padding: 0px;font-size:50px;text-align:center;"> Student Attendance</span>
 </th></thead>
               {% if notfound %}
               <thead style="height: 25px; background-color: #245b80; color: #fff;padding: 15px"><th colspan="5" style="height: 40px; background-color:rgb(168, 8, 8); color: #fff;padding: 20px;"> Student not found!! Re=Enter Right Information or Contact  control room</th></thead>
@@ -126,29 +135,28 @@
                               <div class="row">
                                   
                                  <div class="col-sm-4" >
-                                 <caption> <h2 style="padding-left:10px;padding-right:10px;font-weight:bold;font-size:30px;background-color: #035a4c; color: #fff;text-shadow: 7px 7px 7px rgb(73, 25, 11);">Student Details</h2></caption>
+                                 <caption> <h2 style="padding-left:10px;padding-right:10px;font-weight:bold;text-align:center;font-size:30px;background-color: #035a4c; color: #fff;text-shadow: 7px 7px 7px rgb(73, 25, 11);"> More Details About Student</h2></caption>
 
-                                <table style="font-weight:bold;font-size:20px;">
-                                  <thead>
-                                    <th>Roll:</th>
-                                     <th id="roll"></th>
+                                <table id="student_details" style="font-weight:bold;font-size:20px;">
+                                  <thead >
+                                    <th style="background-color:#a93226;color:white">Roll:</th>
+                                     <th style="background-color:#e74c3c;color:white" id="roll"></th>
                                   </thead>
                                  
                                    <tr>
-                                    <td>Group:</td>
-                                    <td id="group"></td>
+                                    <td style="background-color:#922b21;color:white">Group:</td>
+                                    <td style="background-color:#b03a2e;color:white" id="group"></td>
                                   </tr> 
 
                                   <tr>
-                                    <td>Section:</td>
-                                    <td id="section"></td>
+                                    <td style="background-color:#7b241c;color:white">Section:</td>
+                                    <td style="background-color:#943126;color:white" id="section"></td>
                                   </tr> 
                                   <tr>
-                                    <td>Session</td>
-                                    <td id="session"></td>
+                                    <td style="background-color:#641e16;color:white">Session</td>
+                                    <td style="background-color:#78281f;color:white" id="session"></td>
                                   </tr>
                                 </table>
-                                 <h1 id="indication"> </h1>
                                 </div>
                                 <div class="col-sm-4" >
                                     <img id="image" src="{% static 'images/gmrwc_logo.png' %}" width="350">
@@ -158,19 +166,19 @@
                                    <caption> <h2 style="padding-left:10px;padding-right:10px;font-weight:bold;font-size:30px;background-color: #035a4c; color: #fff;text-shadow: 7px 7px 7px rgb(73, 25, 11);">Todays Attendance Details</h2></caption>
                                   <table align="center"  style="font-weight:bold;font-size:20px; text-align:center;border-color:red;">
                                    
-                                  <thead>
+                                  <thead style="text-align:center;background-color:#641e16;padding:0px;color:white">
                                     <th>Science:</th>
                                      <th>Humanities</th>
                                      <th>Business Studies</th>
                                   </thead>
-                                  <tr align="center">
+                                  <tr style="text-align:center;background-color:#b03a2e;padding:0px;color:white">
                                     <td id="science"></td>
                                     <td id="humanities"></td>
                                     <td id="business_studies"></td>
                                   </tr>
-                                   <tr align="center">
-                                    <td colspan="2">All</td>
-                                    <td id="all" ></td>
+                                   <tr style="text-align:center;background-color:#b03a2e;padding:0px;color:white">
+                                    <td colspan="2" style="text-align:center;">All</td>
+                                    <td id="all"></td>
                                   </tr>
                                 </table>
                                 <table width="100%" border="0" cellspacing="0" cellpadding="10">
@@ -236,13 +244,19 @@
               document.getElementById("section").innerText=response.student[0].section;
               document.getElementById("session").innerText=response.session;
               document.getElementById("science").innerText=response.attendance1[0].science;
+              document.getElementById("science").style="text-align:center";
               document.getElementById("humanities").innerText=response.attendance1[0].humanities;
+              document.getElementById("humanities").style="text-align:center";
               document.getElementById("business_studies").innerText=response.attendance1[0].business_studies;
+              document.getElementById("business_studies").style="text-align:center";
               document.getElementById("all").innerText=response.attendance1[0].all;
+              document.getElementById("all").style="text-align:center";
               if (response.done==1){
+              document.getElementById("indication").style="color:red;";
               document.getElementById("indication").innerText="Previously! Your Attendance Done!!";
               }
               else{
+              document.getElementById("indication").style="color:green;";
               document.getElementById("indication").innerText="Your Attendance Done!!";
 
               }
