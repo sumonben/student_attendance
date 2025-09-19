@@ -46,7 +46,7 @@
              <h1 id="indication" style="display:inline-block;" > </h1>
           </th>
           <th width="40%">
-               <input type="text" name="roll" class="form-control form-control-sm" style="margin:auto;width:40%" required="" id="id_roll" oninput="myFunctionTeacher(this.id);" autofocus> 
+               <input maxlength="6" type="text" name="roll" class="form-control form-control-sm" style="margin:auto;width:40%" required="" id="id_roll" oninput="myFunctionTeacher(this.id);" autofocus> 
           </th>
         </thead>
       </table>
@@ -223,6 +223,7 @@
       var csrfToken = $('[name="csrfmiddlewaretoken"]').val();
 
       var roll=document.getElementById(id).value;
+      
       if (roll.length==6){
           var $j = jQuery.noConflict();
         $.ajax({
@@ -237,7 +238,12 @@
           
             if (response.status === 'success') {
                
-               document.getElementById("image").src="/static/images/hsc-2024-25/"+response.student[0].class_roll+".jpg";
+              if(response.student[0] == null){
+                document.getElementById(id).value="";
+                      document.getElementById(id).focus();
+                      document.getElementById("indication").innerText="Enter Your ID Card Again";
+                }
+              document.getElementById("image").src=response.student[0].image;//"/static/images/hsc-2024-25/"+response.student[0].class_roll+".jpg";
               document.getElementById("name").innerText=response.student[0].name;
               document.getElementById("roll").innerText=response.student[0].class_roll;
               document.getElementById("group").innerText=response.group;
@@ -269,18 +275,22 @@
               document.getElementById(id).focus();
   
             } else {
-             ///alert("Success message not found");
-                    
+            document.getElementById(id).value="";
+            document.getElementById(id).focus();
+            document.getElementById("indication").innerText="Enter Your ID Card Again";                    
                 }
                 
         },
         error: function (xhr, status, error) {
-           
+           document.getElementById(id).value="";
+            document.getElementById(id).focus();
+            document.getElementById("indication").innerText="Enter Your ID Card Again";
             var err = eval("(" + xhr.responseText + ")");
             alert(err.Message);
         }
     });
       }
+     
       
       
     } 

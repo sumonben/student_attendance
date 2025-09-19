@@ -51,8 +51,8 @@ class GetStudentView(View):
                 done=1
             attendance1={}
             if student and attendance is None:
-                    Attendance.objects.create(name=student.name,class_roll=student.class_roll,student=student,group=student.group,section=student.section,session=student.session,department=student.department)
-                    daily_date=DailyAttendance.objects.filter(date=date.today(),session=student.session).first()
+                    Attendance.objects.create(name=student.name,class_roll=student.class_roll,student=student,student_category=student.student_category,group=student.group,section=student.section,session=student.session,department=student.department)
+                    daily_date=DailyAttendance.objects.filter(date=date.today(),student_category=student.student_category,session=student.session).first()
                     #print(daily_date)
                     if daily_date:
                         if student.group.title_en== "Science":
@@ -75,7 +75,7 @@ class GetStudentView(View):
                             humanities=1
                         if student.group.title_en== "Business Studies":
                             business_studies=1
-                        DailyAttendance.objects.create(date=date.today(),science=science,humanities=humanities,business_studies=business_studies,all=1,session=student.session)
+                        DailyAttendance.objects.create(date=date.today(),science=science,humanities=humanities,business_studies=business_studies,all=1,student_category=student.student_category,session=student.session)
                         
         student=list(students.values())
         attendance1=DailyAttendance.objects.filter(date=date.today())
